@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 import {
   useFonts,
   Poppins_400Regular,
@@ -18,10 +18,23 @@ export default function App() {
     Poppins_700Bold
   });
 
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+        console.log('try')
+      } catch (err) {
+        console.log('error ', err);
+      } finally {
+        console.log('finally')
+        await SplashScreen.hideAsync();
+      }
+    }
 
-  if (!fontsLoaded) {
-    return <AppLoading />
-  }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded) return null;
 
   return (
     <ThemeProvider theme={theme}>
