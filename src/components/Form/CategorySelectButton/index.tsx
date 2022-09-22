@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -8,13 +8,14 @@ import {
 } from './styles';
 
 
-interface Props extends TouchableOpacityProps {
+interface Props extends RectButtonProps {
   title: string;
+  onPress: () => void;
 }
 
-export function CategorySelectButton({ title, ...rest }: Props) {
+export function CategorySelectButton({ title, onPress, ...rest }: Props) {
   return (
-    <Container {...rest}>
+    <Container onPress={onPress} {...rest}>
       <Category>{title}</Category>
       <Icon name="chevron-down" />
     </Container>
