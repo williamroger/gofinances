@@ -60,7 +60,7 @@ export function Dashboard() {
   }
 
   async function loadTransactions() {
-    const dataKey = '@gofinance:transactions';
+    const dataKey = '@gofinances:transactions';
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
@@ -135,7 +135,7 @@ export function Dashboard() {
   useEffect(() => {
     loadTransactions();
     /* Para limpar a lista
-    const dataKey = '@gofinance:transactions';
+    const dataKey = '@gofinances:transactions';
     AsyncStorage.removeItem(dataKey);
     */
   }, []);
